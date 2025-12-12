@@ -2,7 +2,7 @@
 
 A stunning 3D portfolio website built with React, TypeScript, Three.js, and GSAP featuring an interactive 3D character model and smooth animations.
 
-![Portfolio Preview](https://github.com/user-attachments/assets/3c4557e7-6392-4928-b8a9-7b2476ef4edd)
+![Portfolio Preview](https://github.com/Surajit00007/3D_Portfolio_website-1/blob/main/public/images/Portfolio_preview_1.png)
 
 ## ✨ Features
 

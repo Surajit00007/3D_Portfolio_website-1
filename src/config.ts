@@ -104,7 +104,7 @@ export const config = {
             date: "May 2025",
             technologies: "Transformer, Beam Search, Sampling",
             github: "https://github.com/Surajit00007/Intelligent_Chatbot_Development-project",
-            image: "https://cdn.prod.website-files.com/6391b5b30283a58cafb3bb77/66cdf315ca3f21249b505811_chat-bot-innv.webp"
+            image: "https://github.com/user-attachments/assets/3c4557e7-6392-4928-b8a9-7b2476ef4edd"
         },
         {
             id: 2,
@@ -114,7 +114,7 @@ export const config = {
             date: "Jan 2025",
             technologies: "Streamlit, Python, Ollama, LLMs (phi3, mistral, llama3)",
             github: "https://github.com/Surajit00007/Customised_GPT_project",
-            image: "https://static0.howtogeekimages.com/wordpress/wp-content/uploads/2024/10/an-ai-chatbot-sitting-at-a-desk-at-home.jpg?w=1600&h=900&fit=crop"
+            image: "https://github.com/user-attachments/assets/3c4557e7-6392-4928-b8a9-7b2476ef4edd"
         },
         {
             id: 3,

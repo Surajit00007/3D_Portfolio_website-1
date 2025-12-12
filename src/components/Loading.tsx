@@ -12,7 +12,7 @@ const Loading = memo(({ percent }: { percent: number }) => {
 
   // Add timeout to prevent infinite loading
   useEffect(() => {
-    const timeout = setTimeout(() => {
+    const timeout: ReturnType<typeof setTimeout> = window.setTimeout(() => {
       if (percent < 100) {
         console.warn("Loading timeout reached, forcing completion");
         setIsLoading(false);
@@ -26,9 +26,9 @@ const Loading = memo(({ percent }: { percent: number }) => {
   useEffect(() => {
     if (percent >= 100) {
       let timer2: ReturnType<typeof setTimeout>;
-      const timer1 = setTimeout(() => {
+      const timer1: ReturnType<typeof setTimeout> = window.setTimeout(() => {
         setLoaded(true);
-        timer2 = setTimeout(() => {
+        timer2 = window.setTimeout(() => {
           setIsLoaded(true);
         }, 1000);
       }, 600);
@@ -50,7 +50,7 @@ const Loading = memo(({ percent }: { percent: number }) => {
       try {
         const module = await import("./utils/initialFX");
         setClicked(true);
-        timeoutId = setTimeout(() => {
+        timeoutId = window.setTimeout(() => {
           try {
             // Make main content visible BEFORE calling initialFX
             const mainElement = document.getElementsByTagName("main")[0];
@@ -82,7 +82,7 @@ const Loading = memo(({ percent }: { percent: number }) => {
       } catch (error) {
         console.error("Failed to load initialFX:", error);
         setClicked(true);
-        timeoutId = setTimeout(() => {
+        timeoutId = window.setTimeout(() => {
           // Ensure main content is visible even if initialFX fails to load
           const mainElement = document.getElementsByTagName("main")[0];
           if (mainElement) {

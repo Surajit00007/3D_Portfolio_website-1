@@ -26,9 +26,9 @@ export const handleTouchEnd = (
     interpolationY: number
   ) => void
 ) => {
-  setTimeout(() => {
+  window.setTimeout(() => {
     setMousePosition(0, 0, 0.03, 0.03);
-    setTimeout(() => {
+    window.setTimeout(() => {
       setMousePosition(0, 0, 0.1, 0.2);
     }, 1000);
   }, 2000);

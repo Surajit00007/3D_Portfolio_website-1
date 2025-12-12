@@ -1,6 +1,6 @@
-# 3D Portfolio Website 🚀
+# Surajit Sahoo's 3D Portfolio Website 🚀
 
-A stunning 3D portfolio website built with React, TypeScript, Three.js, and GSAP featuring an interactive 3D character model and smooth animations.
+A stunning 3D portfolio website showcasing AI & ML projects, work experience, and skills, built with React, TypeScript, Three.js, and GSAP featuring an interactive 3D character model and smooth animations.
 
 ![Portfolio Preview](https://github.com/Surajit00007/3D_Portfolio_website-1/blob/main/public/images/Portfolio_preview_1.png)
 
@@ -34,8 +34,8 @@ A stunning 3D portfolio website built with React, TypeScript, Three.js, and GSAP
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/Surajit00007/3d-Portfolio-website.git
-   cd 3d-Portfolio-website
+   git clone https://github.com/Surajit00007/3D_Portfolio_website-1.git
+   cd 3D_Portfolio_website-1
    ```
 
 2. **Install dependencies**

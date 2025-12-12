@@ -48,10 +48,50 @@ export const config = {
         {
             position: "Bachelor of Technology",
             company: "Institute of Technical Education and Research, SOA University",
-            period: "SEP 2023 - AUG 2027",
+            period: "NOW (SEP 2027 EXPECTED)",
             location: "Bhubaneswar, Odisha",
             description: "Specialization: Computer Science (AI & ML). CGPA: 8.45/10 (up to 4th sem). Coursework: Data Structures & Algorithms (Java), Machine Learning, Deep Learning, Algorithm Analysis, Artificial Intelligence.",
             responsibilities: [],
+            technologies: []
+        },
+        {
+            position: "Machine Learning Intern",
+            company: "InLignTech",
+            period: "Jul 2025 – Sep 2025",
+            location: "",
+            description: "Developed Spam Email Classification using NLP + ML. • Built Credit Card Fraud Detection with imbalanced dataset handling (SMOTE). • Implemented Breast Cancer Classification using supervised ML. • Executed end-to-end ML pipeline: preprocessing, model training, evaluation. • Worked extensively on real-world classification and imbalance handling.",
+            responsibilities: [
+                "Developed Spam Email Classification using NLP + ML.",
+                "Built Credit Card Fraud Detection with imbalanced dataset handling (SMOTE).",
+                "Implemented Breast Cancer Classification using supervised ML.",
+                "Executed end-to-end ML pipeline: preprocessing, model training, evaluation.",
+                "Worked extensively on real-world classification and imbalance handling."
+            ],
+            technologies: []
+        },
+        {
+            position: "SQL Bootcamp Trainee",
+            company: "LetsUpgrade",
+            period: "Jan 2025",
+            location: "",
+            description: "Learned SQL query writing, data retrieval, updates, and optimization. • Worked with real datasets for hands-on database operations.",
+            responsibilities: [
+                "Learned SQL query writing, data retrieval, updates, and optimization.",
+                "Worked with real datasets for hands-on database operations."
+            ],
+            technologies: []
+        },
+        {
+            position: "IoT & Robotics Intern",
+            company: "ExternsClub",
+            period: "Mar 2024 – May 2024",
+            location: "",
+            description: "Worked with IoT sensors, microcontrollers, and automation systems. • Used Blynk workspace for IoT applications. • Developed real-time monitoring and automation solutions with Arduino.",
+            responsibilities: [
+                "Worked with IoT sensors, microcontrollers, and automation systems.",
+                "Used Blynk workspace for IoT applications.",
+                "Developed real-time monitoring and automation solutions with Arduino."
+            ],
             technologies: []
         }
     ],

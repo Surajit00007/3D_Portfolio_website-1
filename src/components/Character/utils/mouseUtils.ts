@@ -27,9 +27,9 @@ export const handleTouchEnd = (
   ) => void
 ) => {
   setTimeout(() => {
-    setMousePosition(0, 0, 0.02, 0.02);
+    setMousePosition(0, 0, 0.03, 0.03);
     setTimeout(() => {
-      setMousePosition(0, 0, 0.05, 0.08);
+      setMousePosition(0, 0, 0.1, 0.2);
     }, 1000);
   }, 2000);
 };

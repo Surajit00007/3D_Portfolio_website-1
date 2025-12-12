@@ -2,7 +2,6 @@ import * as THREE from "three";
 import { DRACOLoader, GLTF, GLTFLoader } from "three-stdlib";
 import { setCharTimeline, setAllTimeline } from "../../utils/GsapScroll";
 import { decryptFile } from "./decrypt";
-import { ENC_URL } from "../../../config";
 
 const setCharacter = (
   renderer: THREE.WebGLRenderer,
@@ -15,30 +14,18 @@ const setCharacter = (
   loader.setDRACOLoader(dracoLoader);
 
   const loadCharacter = () => {
-    console.log('🎭 Starting character load...');
-    return new Promise<GLTF | null>(async (resolve) => {
+    return new Promise<GLTF | null>(async (resolve, reject) => {
       try {
-        console.log('🔐 Decrypting character file...');
         const encryptedBlob = await decryptFile(
-          ENC_URL,
+          "/models/character.enc",
           "Character3D#@"
         );
-        
-        if (!encryptedBlob) {
-          console.error('❌ Character decryption failed - no data returned');
-          resolve(null);
-          return;
-        }
-        
-        console.log('📦 Creating blob URL for character model...');
         const blobUrl = URL.createObjectURL(new Blob([encryptedBlob]));
 
         let character: THREE.Object3D;
-        console.log('🚀 Loading GLTF model...');
         loader.load(
           blobUrl,
           async (gltf) => {
-            console.log('✅ Character model loaded successfully!');
             character = gltf.scene;
             await renderer.compileAsync(character, camera, scene);
             character.traverse((child: any) => {
@@ -59,12 +46,12 @@ const setCharacter = (
           undefined,
           (error) => {
             console.error("Error loading GLTF model:", error);
-            resolve(null); // Fallback: skip 3D model
+            reject(error);
           }
         );
       } catch (err) {
-        console.error("Failed to load character model:", err);
-        resolve(null); // Fallback: skip 3D model
+        reject(err);
+        console.error(err);
       }
     });
   };

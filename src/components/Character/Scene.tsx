@@ -20,17 +20,7 @@ const Scene = () => {
   const { setLoading } = useLoading();
 
   const [character, setChar] = useState<THREE.Object3D | null>(null);
-  
   useEffect(() => {
-    // Initialize progress loader immediately
-    let progress = setProgress((value) => setLoading(value));
-    
-    // Fallback: ensure loading completes even if component fails to initialize
-    const fallbackTimeout = setTimeout(() => {
-      console.warn("Scene initialization timeout, forcing loading completion");
-      progress.clear();
-    }, 20000); // 20 second fallback
-    
     if (canvasDiv.current) {
       let rect = canvasDiv.current.getBoundingClientRect();
       let container = { width: rect.width, height: rect.height };
@@ -60,56 +50,44 @@ const Scene = () => {
       const clock = new THREE.Clock();
 
       const light = setLighting(scene);
+      let progress = setProgress((value) => setLoading(value));
       const { loadCharacter } = setCharacter(renderer, scene, camera);
 
-      // Set a timeout to ensure loading completes even if character takes too long
-      const loadingTimeout = setTimeout(() => {
-        console.warn("Character loading timeout, forcing completion");
-        progress.clear();
-        clearTimeout(fallbackTimeout);
-      }, 15000); // 15 second timeout
-
-      loadCharacter().then((gltf) => {
-        clearTimeout(loadingTimeout);
-        clearTimeout(fallbackTimeout);
-        if (gltf) {
-          const animations = setAnimations(gltf);
-          hoverDivRef.current && animations.hover(gltf, hoverDivRef.current);
-          mixer = animations.mixer;
-          let character = gltf.scene;
-          setChar(character);
-          scene.add(character);
-          headBone = character.getObjectByName("spine006") || null;
-          screenLight = character.getObjectByName("screenlight") || null;
-          progress.loaded().then(() => {
-            setTimeout(() => {
-              light.turnOnLights();
-              animations.startIntro();
-            }, 2500);
-          });
-          window.addEventListener("resize", () =>
-            handleResize(renderer, camera, canvasDiv, character)
-          );
-        } else {
-          // If gltf is null, complete loading immediately
-          progress.clear();
-        }
-      }).catch((error) => {
-        clearTimeout(loadingTimeout);
-        clearTimeout(fallbackTimeout);
-        console.error("Failed to load character model:", error);
-        // Force loading completion immediately when character fails
-        progress.clear();
-        console.warn("Character loading failed, proceeding without 3D model");
-      });
+      loadCharacter()
+        .then((gltf) => {
+          if (gltf) {
+            const animations = setAnimations(gltf);
+            hoverDivRef.current && animations.hover(gltf, hoverDivRef.current);
+            mixer = animations.mixer;
+            let character = gltf.scene;
+            setChar(character);
+            scene.add(character);
+            headBone = character.getObjectByName("spine006") || null;
+            screenLight = character.getObjectByName("screenlight") || null;
+            progress.loaded().then(() => {
+              setTimeout(() => {
+                light.turnOnLights();
+                animations.startIntro();
+              }, 2500);
+            });
+            window.addEventListener("resize", () =>
+              handleResize(renderer, camera, canvasDiv, character)
+            );
+          }
+        })
+        .catch((err) => {
+          console.error("Error loading character:", err);
+          // Force completion so the site loads even if character fails
+          progress.loaded();
+        });
 
       let mouse = { x: 0, y: 0 },
-        interpolation = { x: 0.05, y: 0.08 };
+        interpolation = { x: 0.1, y: 0.2 };
 
       const onMouseMove = (event: MouseEvent) => {
         handleMouseMove(event, (x, y) => (mouse = { x, y }));
       };
-      let debounce: ReturnType<typeof setTimeout> | undefined;
+      let debounce: number | undefined;
       const onTouchStart = (event: TouchEvent) => {
         const element = event.target as HTMLElement;
         debounce = setTimeout(() => {
@@ -156,8 +134,6 @@ const Scene = () => {
       animate();
       return () => {
         clearTimeout(debounce);
-        clearTimeout(loadingTimeout);
-        clearTimeout(fallbackTimeout);
         scene.clear();
         renderer.dispose();
         window.removeEventListener("resize", () =>
@@ -172,15 +148,8 @@ const Scene = () => {
           landingDiv.removeEventListener("touchend", onTouchEnd);
         }
       };
-    } else {
-      // If canvasDiv is not available, still complete loading
-      clearTimeout(fallbackTimeout);
-      progress.clear();
-      return () => {
-        clearTimeout(fallbackTimeout);
-      };
     }
-  }, [setLoading]);
+  }, []);
 
   return (
     <>

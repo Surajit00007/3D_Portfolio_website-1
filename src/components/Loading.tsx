@@ -12,7 +12,7 @@ const Loading = memo(({ percent }: { percent: number }) => {
 
   // Add timeout to prevent infinite loading
   useEffect(() => {
-    const timeout: ReturnType<typeof setTimeout> = window.setTimeout(() => {
+    const timeout: ReturnType<typeof setTimeout> = setTimeout(() => {
       if (percent < 100) {
         console.warn("Loading timeout reached, forcing completion");
         setIsLoading(false);

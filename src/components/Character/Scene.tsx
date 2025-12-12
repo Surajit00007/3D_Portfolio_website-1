@@ -65,7 +65,7 @@ const Scene = () => {
             headBone = character.getObjectByName("spine006") || null;
             screenLight = character.getObjectByName("screenlight") || null;
             progress.loaded().then(() => {
-              window.setTimeout(() => {
+              setTimeout(() => {
                 light.turnOnLights();
                 animations.startIntro();
               }, 2500);
@@ -90,7 +90,7 @@ const Scene = () => {
       let debounce: ReturnType<typeof setTimeout> | undefined;
       const onTouchStart = (event: TouchEvent) => {
         const element = event.target as HTMLElement;
-        debounce = window.setTimeout(() => {
+        debounce = setTimeout(() => {
           element?.addEventListener("touchmove", (e: TouchEvent) =>
             handleTouchMove(e, (x, y) => (mouse = { x, y }))
           );
